@@ -1,0 +1,8 @@
+{
+  "load": "fill",
+  "login": "login",
+  "error": "error",
+  "warn": "warn",
+  "cmd": "commands",
+  "evnts": "events"
+}

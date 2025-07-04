@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title class="titleText">Create bot</title>
+    <link rel="icon" type="image/x-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBZvtDbJ4A6SMgKU6DLkoLjxvFBgxOdTUe2Tfvdm-Nki57LbsA79_bDtg&s=10">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+      body {
+        background-color: #1e1e1e;
+        color: #fff;
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      #icon-mainn {
+        border-radius: 50%;
+        display: absolute;
+        border: 3.5px solid blue;
+        background-size: cover;
+        padding: 1px;
+        width: 95px;
+        height: 95px;
+        -webkit-user-select: none;
+        /* Safari */
+        -ms-user-select: none;
+        /* IE 10 and IE 11 */
+        user-select: none;
+        margin-top: -60px;
+        margin-left: -240px;
+      }
+
+      #active-status {
+        border-radius: 50%;
+        width: 15px;
+        height: 15px;
+        border: 2px solid #1e1e1e;
+        -webkit-user-select: none;
+        /* Safari */
+        -ms-user-select: none;
+        /* IE 10 and IE 11 */
+        user-select: none;
+        position: relative;
+        margin-left: -180px;
+        margin-top: -25px;
+        margin-bottom: 10px;
+      }
+
+      #background-pic {
+        width: 100%;
+        height: 150px;
+        margin-top: -5px;
+      }
+
+      .name {
+        font-size: 18px;
+        -webkit-user-select: none;
+        /* Safari */
+        -ms-user-select: none;
+        /* IE 10 and IE 11 */
+        user-select: none;
+        /* Standard syntax */
+        margin-top: 5px;
+        margin-left: -250px;
+      }
+
+      .bio {
+        font-size: 10px;
+        margin-top: -10px;
+        width: 350px;
+        -webkit-user-select: none;
+        /* Safari */
+        -ms-user-select: none;
+        /* IE 10 and IE 11 */
+        user-select: none;
+        /* Standard syntax */
+        color: gray;
+        text-align: left;
+        margin-left: 5px;
+      }
+
+      .cmddes {
+        font-size: 10px;
+        margin-top: 0px;
+        -webkit-user-select: none;
+        /* Safari */
+        -ms-user-select: none;
+        /* IE 10 and IE 11 */
+        user-select: none;
+        /* Standard syntax */
+        color: gray;
+        text-align: center;
+      }
+
+      h5 {
+        margin-top: 0px;
+        margin-bottom: 5px;
+        -webkit-user-select: none;
+        /* Safari */
+        -ms-user-select: none;
+        /* IE 10 and IE 11 */
+        user-select: none;
+        /* Standard syntax */
+      }
+
+      @keyframes glow {
+        from {
+          border-color: #1e1e1e;
+        }
+
+        to {
+          border-color: gray;
+        }
+      }
+
+      .menu-toggle {
+        display: block;
+        width: 30px;
+        height: 22px;
+        margin-top: -25px;
+        margin-left: 285px;
+        margin-bottom: 5px;
+        position: relative;
+      }
+
+      .bar {
+        display: block;
+        width: 90%;
+        height: 3px;
+        background-color: #333;
+        margin-bottom: 5px;
+        transition: all 0.3s ease;
+      }
+
+      .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+
+      .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+
+      .menu-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+      }
+
+      .menu {
+        background-color: #1e1e1e;
+        opacity: 0.95;
+        border: 1px solid gray;
+        width: 50%;
+        padding: 20px;
+        text-align: center;
+        border-radius: 10px;
+      }
+
+      .menu div {
+        list-style: none;
+        margin-bottom: 15px;
+      }
+
+      button {
+        margin-top: 2px;
+        border: 1px solid gray;
+        color: gray;
+        padding: 10px;
+        animation: glow 3s infinite alternate;
+        background: transparent;
+        border-radius: 10px;
+        -webkit-user-select: none;
+        /* Safari */
+        -ms-user-select: none;
+        /* IE 10 and IE 11 */
+        user-select: none;
+        /* Standard syntax */
+        font-family: 'Montserrat', sans-serif;
+        cursor: pointer;
+        font-size: 0.8rem;
+        transition: background 0.3s ease;
+      }
+
+      button:hover {
+        opacity: 0.5;
+      }
+
+      .menu-buttons {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .container {
+        padding: 20px;
+        border: 1px solid #dee2e6;
+        animation: glow 3s infinite alternate;
+        border-radius: 10px;
+        max-width: 100;
+        background: transparent;
+        text-align: center;
+        margin-top: 10px;
+        width: 95%;
+      }
+
+      .cmd-container {
+        padding: 20px;
+        border: 1px solid #dee2e6;
+        animation: glow 3s infinite alternate;
+        border-radius: 10px;
+        max-width: 100;
+        background: transparent;
+        text-align: center;
+        margin-top: 10px;
+        width: 95%;
+      }
+
+      .create-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 300px;
+        margin: 0;
+        padding: 10px;
+      }
+
+      .login-container {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 300px;
+        margin: 0;
+        padding: 10px;
+      }
+
+      .tutorial-container {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 300px;
+        margin: 0;
+        padding: 10px;
+      }
+
+      .onlines-container {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 300px;
+        margin: 0;
+        padding: 10px;
+      }
+
+      .command-container {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 300px;
+        margin: 0;
+        padding: 10px;
+      }
+
+      .command-list {
+        padding: 10px;
+        border: 1px solid gray;
+        animation: glow 3s infinite alternate;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+
+      .command-list h5 {
+        text-align: center;
+        margin-bottom: 0px;
+        font-size: 12px;
+      }
+
+      .command-list p {
+        text-align: center;
+        margin-bottom: 0px;
+        font-size: 8px;
+      }
+
+      textarea[type="text"],
+      input[type="text"],
+      input[type="password"] {
+        resize: none;
+        background: transparent;
+        width: 80%;
+        border: 1px solid;
+        border-radius: 10px;
+        -webkit-user-select: none;
+        /* Safari */
+        -ms-user-select: none;
+        /* IE 10 and IE 11 */
+        user-select: none;
+        /* Standard syntax */
+        font-size: 10px;
+        margin-bottom: 5px;
+        padding: 15px;
+        color: white;
+        animation: glow 3s infinite alternate;
+      }
+
+      .user-card {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 2px;
+        width: 1000;
+        height: 50px;
+        text-align: center;
+        animation: glow 3s infinite alternate;
+      }
+
+      .user-card img {
+        max-width: 100%;
+        border-radius: 50%;
+        margin-right: 10px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        width: 20px;
+        height: 20px;
+      }
+
+      .user-info {
+        flex-grow: 1;
+      }
+
+      .user-info h4 {
+        margin-left: 3px;
+        margin-bottom: 3px;
+        font-size: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: start;
+      }
+
+      .user-info p {
+        margin: 0;
+        font-size: 6px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: start;
+        margin-bottom: 5px;
+      }
+
+      p {
+        padding: 1px;
+      }
+
+      uptime-user {
+        margin-bottom: 5px;
+      }
+
+      #tutorialimg {
+        border-radius: 10px;
+        width: 200px;
+        height: 200px;
+        margin-bottom: 20px;
+        border: 1px solid white;
+      }
+
+      .toast {
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+        padding: 15px;
+        font-size: 16px;
+      }
+
+      #toast-container {
+        top: 100px;
+      }
+
+      .toast-success {
+        background-color: #28a745;
+        border: 1px solid gray;
+        font-size: 10px;
+      }
+
+      .toast-error {
+        background-color: #dc3545;
+        border: 1px solid gray;
+        font-size: 10px;
+      }
+
+      .toast-info {
+        background-color: #1e1e1e;
+        border: 1px solid gray;
+        font-size: 10px;
+      }
+
+      .toast-warning {
+        background-color: #ffc107;
+        border: 1px solid gray;
+        font-size: 10px;
+      }
+
+      .follow-button {
+        padding: 5px;
+        border: 1px solid blue;
+        background-color: blue;
+        border-radius: 5px;
+        color: white;
+        margin-left: -200px;
+        width: 130px;
+        text-decoration: none;
+        font-size: 13px;
+        text-align: center;
+      }
+
+      .page-button {
+        padding: 5px;
+        border: 1px solid white;
+        background-color: white;
+        border-radius: 5px;
+        color: black;
+        margin-left: 90px;
+        margin-top: -31px;
+        width: 110px;
+        text-decoration: none;
+        font-size: 13px;
+        text-align: center;
+      }
+
+      .line-main {
+        width: 100%;
+        height: 1px;
+        margin-bottom: 10px;
+        margin-top: 20px;
+      }
+
+      .github-profile {
+        font-size: 8px;
+        margin-top: -25px;
+        margin-left: -160px;
+        color: blue;
+        text-decoration: none;
+        margin-bottom: 20px;
+      }
+
+      .github-icon {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        border: 1px solid gray;
+        margin-left: -330px;
+        margin-bottom: 10px;
+        margin-top: -10px;
+      }
+
+      .title-banner {
+        margin-left: -250px;
+        margin-bottom: 0px;
+        font-size: 15px;
+      }
+
+      .verified-logo {
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        margin-top: -31.5px;
+        margin-left: -130px;
+        background: transparent;
+        mix-blend-mode: lighten;
+        margin-bottom: 20px;
+      }
+
+      /* Mobile */
+      @media (min-width:320px) {}
+
+      /* Tablet */
+      @media (min-width:640px) {
+        body {
+          background-color: #1e1e1e;
+          color: #fff;
+          font-family: 'Poppins', sans-serif;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          width: 100%;
+          box-sizing: border-box;
+        }
+      }
+
+      /* Desktop */
+      @media (min-width:960px) {
+        #icon-mainn {
+          border-radius: 50%;
+          display: absolute;
+          border: 3.5px solid blue;
+          background-size: cover;
+          padding: 1px;
+          width: 150px;
+          height: 150px;
+          -webkit-user-select: none;
+          /* Safari */
+          -ms-user-select: none;
+          /* IE 10 and IE 11 */
+          user-select: none;
+          margin-top: -30px;
+          margin-left: -740px;
+        }
+
+        #active-status {
+          border-radius: 50%;
+          width: 30px;
+          height: 30px;
+          border: 2px solid #1e1e1e;
+          -webkit-user-select: none;
+          /* Safari */
+          -ms-user-select: none;
+          /* IE 10 and IE 11 */
+          user-select: none;
+          position: relative;
+          margin-left: -640px;
+          margin-top: -40px;
+          margin-bottom: 10px;
+        }
+
+        #background-pic {
+          width: 100%;
+          height: 300px;
+          margin-top: -5px;
+        }
+
+        .name {
+          font-size: 20px;
+          -webkit-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          margin-top: -120px;
+          margin-left: -450px;
+        }
+
+        .bio {
+          font-size: 8px;
+          width: 300px;
+          -webkit-user-select: none;
+          /* Safari */
+          -ms-user-select: none;
+          /* IE 10 and IE 11 */
+          user-select: none;
+          /* Standard syntax */
+          color: gray;
+          text-align: left;
+          margin-left: -250px;
+        }
+
+        .verified-logo {
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          margin-top: -35px;
+          margin-left: -320px;
+          background: transparent;
+          mix-blend-mode: lighten;
+          margin-bottom: 20px;
+        }
+
+        .github-profile {
+          font-size: 10px;
+          margin-top: -29px;
+          margin-left: -320px;
+          color: blue;
+          text-decoration: none;
+          margin-bottom: 20px;
+        }
+
+        .github-icon {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          border: 1px solid gray;
+          margin-left: -530px;
+          margin-bottom: 10px;
+          margin-top: -10px;
+        }
+
+        .follow-button {
+          padding: 5px;
+          border: 1px solid blue;
+          background-color: blue;
+          border-radius: 5px;
+          color: white;
+          margin-left: 350px;
+          margin-top: -65px;
+          width: 130px;
+          text-decoration: none;
+          font-size: 13px;
+          text-align: center;
+        }
+
+        .page-button {
+          padding: 5px;
+          border: 1px solid white;
+          background-color: white;
+          border-radius: 5px;
+          color: black;
+          margin-left: 650px;
+          margin-top: -31px;
+          width: 110px;
+          text-decoration: none;
+          font-size: 13px;
+          text-align: center;
+        }
+
+        .menu-toggle {
+          display: block;
+          width: 30px;
+          height: 22px;
+          margin-top: -25px;
+          margin-left: 850px;
+          position: relative;
+        }
+
+        .line-main {
+          width: 100%;
+          height: 1px;
+          margin-bottom: 10px;
+          margin-top: 60px;
+        }
+
+        .create-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 70%;
+          margin: 0;
+          padding: 10px;
+        }
+
+        .login-container {
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          width: 70%;
+          margin: 0;
+          padding: 10px;
+        }
+
+        .tutorial-container {
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          width: 70%;
+          margin: 0;
+          padding: 10px;
+        }
+
+        .onlines-container {
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          width: 70%;
+          margin: 0;
+          padding: 10px;
+        }
+
+        .command-container {
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          width: 70%;
+          margin: 0;
+          padding: 10px;
+        }
+
+        .cmddes {
+          font-size: 8px;
+          margin-top: 0px;
+          -webkit-user-select: none;
+          /* Safari */
+          -ms-user-select: none;
+          /* IE 10 and IE 11 */
+          user-select: none;
+          /* Standard syntax */
+          color: gray;
+          text-align: center;
+        }
+      }
+      .background-music {
+          width: 0;
+          height: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <img id="background-pic" src="https://img1.picmix.com/output/stamp/normal/3/7/5/5/2195573_939df.gif">
+    <img id="icon-mainn" src="https://i.imgur.com/5qg8ePZ.jpeg">
+    <img id="active-status" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ1TS0JJp5ClJ5lTn-OBv9y461HneWyQco9lx5kVwT6d5i8KTm7-zer9ok&s=10"></img>
+    </img>
+    </img>
+    <audio class="play-background" autoplay loop>
+        <source src="ipagpatawadmo.mp3" type="audio/mpeg">
+    </audio>
+    <h1 class="name">Billy Dulay </h1>
+    <img class="verified-logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE7wBhg3kHUcSznRYkGgDzBjGC9BmayaHhngd9iq-KZr24zqMmYSUgk1k1&s=10"></img>
+    <img class="github-icon" src="https://media.giphy.com/avatars/mwooodward/cIe5MvDvX4Vc.gif">
+    <a class="github-profile" href="https://github.com/ryukodeveloper">https://github.com/ryukodeveloper</a>
+    </img>
+    <p class="bio"> Hey there! I'll warn you about using this project, your facebook account is possible to get locked, restricted or suspended due to logging in to unknown location, automated behavior etc. use a dummy account. </p>
+    <a class="follow-button" href="https://www.facebook.com/billy.dulay.2024">View profile</a>
+    <a class="page-button" href="https://www.facebook.com/ryukodev">View page</a>
+    <div class="menu-toggle">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <img class="line-main" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHazg1aUtZ57F9hGXaXzzPGRuOHHMDbonhWj3b4GCNyrgxC2azDi920IX8&s=10"></img>
+    <div id="menu-container" class="menu-container">
+      <ul class="menu">
+        <h5>Menu Lists</h5>
+        <button class="menu-buttons" onclick="gotoCreate()">Create bot</button>
+        <button class="menu-buttons" onclick="gotoTutorial()">Tutorial</button>
+        <button class="menu-buttons" onclick="gotoCommands()">Commands</button>
+        <button class="menu-buttons" onclick="gotoOnlines()">Onlines</button>
+      </ul>
+    </div>
+    <div class="create-container">
+      <div class="container">
+        <p style="font-size: 10px; margin-top: 1px; margin-bottom: 0px; -webkit-user-select: none; -ms-user-select: none; user-select: none;">Facebook Appstate</p>
+        <textarea type="text" rows="5" id="appState" placeholder="paste your appstate here"></textarea>
+        <p style="font-size: 10px; margin-top: 1px; margin-bottom: 0px; -webkit-user-select: none; -ms-user-select: none; user-select: none;">Bot Details</p>
+        <input type="text" id="username" placeholder="username">
+        </textarea>
+        <input type="password" id="password" placeholder="password">
+        </textarea>
+        <input type="text" id="botName" placeholder="bot name ( ex: ryuko )">
+        </textarea>
+        <input type="text" id="botPrefix" placeholder="bot prefix ( symbol )">
+        </textarea>
+        <input type="text" id="botAdmin" placeholder="bot admin ( facebook id )">
+        </textarea>
+        </br>
+        <p style="font-size: 10px; display: none;" class="whatsGoin"></p>
+        <button style="margin-top: 10px;" class="createButton" onclick="createBot()">Submit</button>
+        <p class="cmddes" style="margin-top: 13px;">Have already bot? click : <a class="cmddes" id="showLogin" style="color: blue;">Log-in</a>
+        </p>
+      </div>
+    </div>
+    <div class="login-container">
+      <div class="container">
+        <h5>Login to continue</h5>
+        <input type="text" id="lUsername" placeholder="username">
+        </textarea>
+        <input type="password" id="lPassword" placeholder="password">
+        </textarea>
+        </br>
+        <p style="font-size: 10px; display: none;" class="loginInfo"></p>
+        <button style="margin-top: 10px;" class="loginButton" onclick="login()">Login</button>
+        <p class="cmddes" style="margin-top: 13px;">Dont have bot? click : <a class="cmddes" id="showCreate" style="color: blue;">Create</a>
+        </p>
+      </div>
+    </div>
+    <div class="command-container">
+      <div class="cmd-container"></div>
+    </div>
+    <div class="onlines-container">
+      <div class="container">
+        <div class="row">
+          <h1 style="font-size: 10px;">Current Online</h1>
+        </div>
+        <div class="row" id="user_online"></div>
+      </div>
+    </div>
+    </div>
+    <div class="tutorial-container">
+      <div class="container">
+        <h5>STEP 1 : </h5>
+        <p class="cmddes">Go to play store and search for <a class="cmddes" style="color: blue;">Kiwi Browser</a> and download it </p>
+        <img id="tutorialimg" src="https://i.imgur.com/nGA8oLY.jpeg"></img>
+        <h5>STEP 2 : </h5>
+        <p class="cmddes">Download c3c fbstate exporter : <a class="cmddes" id="c3cdownload" style="color: blue;">click here</a> to download it </p>
+        <img id="tutorialimg" src="https://i.imgur.com/eYj6Sdt.jpeg"></img>
+        <h5>STEP 3 : </h5>
+        <p class="cmddes">Open <a class="cmddes" style="color: blue;">Kiwi Browser</a> and click the 3 dots </p>
+        <img id="tutorialimg" src="https://i.imgur.com/9JL92Hi.jpeg"></img>
+        <h5>STEP 4 : </h5>
+        <p class="cmddes">After clicking the 3 dots, find the Extension and click it after that click okay then click +(from .zip/.crx/.user.js) and select c3c-ufc-utility-1.5.zip in your download folder.</p>
+        <img id="tutorialimg" src="https://i.imgur.com/awuxfJq.jpeg"></img>
+        <h5>STEP 5 : </h5>
+        <p class="cmddes">after that proceed to facebook.com using Kiwi Browser and login your facebook account. make sure to use a dummy account, after that click the 3 dots again.</p>
+        <img id="tutorialimg" src="https://i.imgur.com/WvzpLp3.jpeg"></img>
+        <h5>STEP 6 : </h5>
+        <p class="cmddes">find C3C FBState Utility and click it, then click the Copy to Clipboard.</p>
+        <img id="tutorialimg" src="https://i.imgur.com/kVyOOOi.jpeg"></img>
+        <h5>LAST STEP : </h5>
+        <p class="cmddes">after copying the appstate, click the menu button and go to Create Bot then paste your appstate in Facebook Appstate and then fill up your bot details. congratulations your bot is now active! note : the bot is only working thru group chats. you can type <a class="cmddes" style="color: blue;">(prefix)help</a>
+        </p>
+        <img id="tutorialimg" src="https://i.imgur.com/YAEtSp5.jpeg"></img>
+      </div>
+    </div>
+  </body>
+  <script>
+      const backgroundm = document.querySelector(".play-background");
+    Swal.fire({
+      title: `<p style="font-size: 15px; margin-top: -15px; margin-bottom: -10px;">Ryuko V5</p>`,
+      icon: "info",
+      html: `<p style="font-size: 8px;">This project is not for sale, you can use it for free.</p>`,
+      background: '#1e1e1e',
+      color: 'white',
+      confirmButtonColor: 'transparent',
+      confirmButtonText: `
+    <i class="fa fa-thumbs-up" style="color:white;"></i> Okay
+  `
+    }).then(() => {
+        backgroundm.play();
+    });
+    const fbstateexp = document.getElementById("c3cdownload");
+    fbstateexp.addEventListener('click', () => {
+      window.location.href = "https://github.com/c3cbot/c3c-fbstate/archive/refs/tags/1.5.zip?fbclid=IwZXh0bgNhZW0CMTEAAR0tVofrArWOfC4VCwjnnEN8NrHDTN6SN_SAKgatYdykNOqaEGuLntWyfzc_aem_Lz75AozocHwJofvHoi-VwA";
+    });
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menuContainer = document.getElementById('menu-container');
+    const createContainer = document.querySelector('.create-container')
+    const tutorialContainer = document.querySelector('.tutorial-container');
+    const commandContainer = document.querySelector('.command-container');
+    const onlineContainer = document.querySelector('.onlines-container');
+    const showLogin = document.getElementById('showLogin');
+    const showCreate = document.getElementById('showCreate');
+    const loginContainer = document.querySelector('.login-container');
+    const bio = document.querySelector('.bio');
+    const titleText = document.querySelector('.titleText');
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      menuContainer.style.display = menuContainer.style.display === 'flex' ? 'none' : 'flex';
+    });
+    async function login() {
+      const username = document.getElementById('lUsername').value;
+      const password = document.getElementById('lPassword').value;
+      const createButton = document.querySelector(".loginButton");
+      const watchaDoin = document.querySelector(".loginInfo");
+      createButton.style.display = "none";
+      watchaDoin.style.display = "block";
+      watchaDoin.style.color = "green";
+      watchaDoin.textContent = "Logging in...";
+      if (!username) {
+        watchaDoin.style.color = "red";
+        watchaDoin.textContent = "username is required!";
+        return createButton.style.display = "";
+      }
+      if (!password) {
+        watchaDoin.style.color = "red";
+        watchaDoin.textContent = "password is required!";
+        return createButton.style.display = "";
+      }
+      fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password
+        })
+      }).then(response => response.json()).then(data => {
+        if (data.token) {
+          watchaDoin.style.color = "green";
+          watchaDoin.textContent = "Logged in successfully.";
+          return setInterval(async () => {
+            window.location.href = '/profile?botid=' + data.botid + '&token=' + data.token;
+          }, 2000)
+        }
+        if (data.error) {
+          watchaDoin.style.color = "red";
+          watchaDoin.textContent = data.error;
+          return createButton.style.display = "";
+        }
+      }).catch(error => {
+        watchaDoin.style.color = "red";
+        watchaDoin.textContent = `something went wrong, try again later.`;
+        return createButton.style.display = "";
+      })
+    }
+    async function getCmd() {
+      const command = document.querySelector('.cmd-container');
+      try {
+        const res = await fetch('/commands');
+        const data = await res.json();
+        command.innerHTML = "";
+        const total = [];
+        data.forEach(cmd => {
+          const {
+            name,
+            description,
+            permission,
+            category,
+            usages,
+            credits
+          } = cmd.config;
+          if (category != 'system' && category != 'operator' && permission == 0 || permission == 1 || permission == 2) {
+            total.push(name);
+          }
+        })
+        const cmdd = document.createElement('h5');
+        const cmdd2 = document.createElement('h5');
+        cmdd.textContent = `Total commands : ${data.length}`;
+        cmdd2.textContent = `Usable commands : ${total.length}`;
+        cmdd.style = `margin-bottom: 10px; top: 0;`
+        cmdd2.style = `margin-bottom: 0px; top: 0;`
+        command.appendChild(cmdd2);
+        command.appendChild(cmdd);
+        data.forEach(cmd => {
+          const {
+            name,
+            description,
+            permission,
+            category,
+            usages,
+            credits
+          } = cmd.config;
+          if (category != 'system' && category != 'operator' && permission == 0 || permission == 1 || permission == 2) {
+            total.push(name);
+            var permisn = '';
+            if (permission == 0) permisn = 'user';
+            if (permission == 2 || category == 'admin') permisn = 'bot admin';
+            if (permission == 1) permisn = 'group admin';
+            const cmdCard = document.createElement('div');
+            cmdCard.className = 'command-list';
+            const cmdName = document.createElement('h5');
+            cmdName.textContent = `${name}`;
+            const cmdDes = document.createElement('p');
+            cmdDes.className = "cmddes"
+            cmdDes.textContent = description || `no description provided`;
+            const creditData = credits || `ryuko`;
+            const cmdCredit = document.createElement('p');
+            cmdCredit.className = "cmddes"
+            cmdCredit.textContent = `credits : ${creditData}`;
+            const cmdUsage = document.createElement('p');
+            cmdUsage.className = "cmddes"
+            const usageData = usages || `no usages provided`;
+            cmdUsage.textContent = `usage : ${usageData}`
+            const cmdPer = document.createElement('p');
+            cmdPer.className = "cmddes"
+            cmdPer.textContent = `permission : ${permisn}`;
+            const cmdCat = document.createElement('p');
+            cmdCat.className = "cmddes"
+            cmdCat.textContent = `category : ${category}`;
+            cmdCard.appendChild(cmdName);
+            cmdCard.appendChild(cmdDes);
+            cmdCard.appendChild(cmdCredit);
+            cmdCard.appendChild(cmdCat);
+            cmdCard.appendChild(cmdPer);
+            cmdCard.appendChild(cmdUsage);
+            command.appendChild(cmdCard);
+          }
+        });
+      } catch (err) {
+        command.innerHTML = `
+					<p class="cmddes" style="color: red;">An error occurred while loading commands</p>`
+      }
+    }
+    getCmd();
+    showLogin.addEventListener('click', () => {
+      createContainer.style.display = "none";
+      loginContainer.style.display = 'flex';
+      titleText.textContent = "Login bot";
+    });
+    showCreate.addEventListener('click', () => {
+      loginContainer.style.display = 'none';
+      createContainer.style.display = "flex";
+      titleText.textContent = "Create bot";
+    });
+
+    function gotoOnlines() {
+      createContainer.style.display = "none";
+      loginContainer.style.display = 'none';
+      tutorialContainer.style.display = "none";
+      commandContainer.style.display = "none";
+      onlineContainer.style.display = "flex";
+      titleText.textContent = "Online Lists";
+      menuToggle.classList.toggle('active');
+      menuContainer.style.display = menuContainer.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function gotoCommands() {
+      createContainer.style.display = "none";
+      loginContainer.style.display = 'none';
+      tutorialContainer.style.display = "none";
+      onlineContainer.style.display = "none";
+      commandContainer.style.display = "flex";
+      titleText.textContent = "Command Lists";
+      menuToggle.classList.toggle('active');
+      menuContainer.style.display = menuContainer.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function gotoCreate() {
+      onlineContainer.style.display = "none";
+      loginContainer.style.display = 'none';
+      tutorialContainer.style.display = "none";
+      commandContainer.style.display = "none";
+      createContainer.style.display = "flex";
+      titleText.textContent = "Create Bot";
+      menuToggle.classList.toggle('active');
+      menuContainer.style.display = menuContainer.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function gotoTutorial() {
+      onlineContainer.style.display = "none";
+      loginContainer.style.display = 'none';
+      createContainer.style.display = "none";
+      commandContainer.style.display = "none";
+      tutorialContainer.style.display = "flex";
+      titleText.textContent = "How to use?";
+      menuToggle.classList.toggle('active');
+      menuContainer.style.display = menuContainer.style.display === 'flex' ? 'none' : 'flex';
+    }
+    async function createBot() {
+      const appstate = document.getElementById('appState').value;
+      const botname = document.getElementById('botName').value;
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const botPrefix = document.getElementById('botPrefix').value;
+      const botAdmin = document.getElementById('botAdmin').value;
+      const createButton = document.querySelector(".createButton");
+      const watchaDoin = document.querySelector(".whatsGoin");
+      createButton.style.display = "none";
+      watchaDoin.style.display = "block";
+      watchaDoin.style.color = "green";
+      watchaDoin.textContent = "creating your bot...";
+      if (!appstate) {
+        watchaDoin.style.color = "red";
+        watchaDoin.textContent = "appstate is required!";
+        return createButton.style.display = "";
+      }
+      if (!username) {
+        watchaDoin.style.color = "red";
+        watchaDoin.textContent = "username is required!";
+        return createButton.style.display = "";
+      }
+      if (!password) {
+        watchaDoin.style.color = "red";
+        watchaDoin.textContent = "password is required!";
+        return createButton.style.display = "";
+      }
+      fetch('/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          appstate: appstate,
+          botname: botname,
+          botprefix: botPrefix,
+          botadmin: botAdmin,
+          username: username,
+          password: password
+        })
+      }).then(response => response.json()).then(data => {
+        if (data.data) {
+          watchaDoin.style.color = "green";
+          watchaDoin.textContent = data.data;
+          return setInterval(async () => {
+            window.location.href = '/profile?botid=' + data.botid + '&token=' + data.token;
+          }, 2000)
+        }
+        if (data.error) {
+          watchaDoin.style.color = "red";
+          watchaDoin.textContent = data.error;
+          return createButton.style.display = ""
+        }
+      }).catch(error => {
+        console.error(error)
+        watchaDoin.style.color = "red";
+        watchaDoin.textContent = String(error);
+        return createButton.style.display = ""
+      })
+    }
+    async function listOfAi() {
+      const userOnline = document.getElementById("user_online");
+      try {
+        const response = await fetch("/info");
+        const data = await response.json();
+        userOnline.innerHTML = '';
+        if (!data[0]) {
+          userOnline.innerHTML = `
+					<div style="font-size: 10px; color=gray;">there is no bot logged in</div>`;
+        }
+        data.forEach(user => {
+          const {
+            name,
+            thumbSrc,
+            profileUrl,
+            time,
+          } = user;
+          const userCard = document.createElement('div');
+          userCard.className = 'col-12 user-card mb-4';
+          const image = document.createElement('img');
+          image.src = thumbSrc;
+          image.alt = 'User Thumbnail';
+          image.className = 'img-thumbnail';
+          const userInfo = document.createElement('div');
+          userInfo.className = 'user-info';
+          const userName = document.createElement('h4');
+          userName.textContent = name;
+          const profileLink = document.createElement('p');
+          profileLink.innerHTML = `${profileUrl}`;
+          const uptimeUser = document.createElement('p');
+          uptimeUser.className = 'uptime-user';
+          uptimeUser.innerHTML = `uptime: ${timeFormat(time)}`;
+          userInfo.appendChild(userName);
+          userInfo.appendChild(profileLink);
+          userInfo.appendChild(uptimeUser);
+          userCard.appendChild(image);
+          userCard.appendChild(userInfo);
+          userOnline.appendChild(userCard);
+          const intervalId = setInterval(() => {
+            user.time++;
+            updateTimer(userCard, user.time);
+          }, 1000);
+        });
+      } catch (error) {
+        console.error(error);
+        userOnline.innerHTML = `
+					<div style="font-size: 10px; color: red;">An error occurred while fetching data.</div>`;
+      }
+    }
+
+    function updateTimer(userCard, currentTime) {
+      const uptimeUser = userCard.querySelector('.uptime-user');
+      uptimeUser.textContent = `uptime : ${timeFormat(currentTime)}`;
+    }
+
+    function timeFormat(currentTime) {
+      const days = Math.floor(currentTime / (3600 * 24));
+      const hours = Math.floor((currentTime % (3600 * 24)) / 3600);
+      const minutes = Math.floor((currentTime % 3600) / 60);
+      const seconds = currentTime % 60;
+      let timeFormat = '';
+      switch (true) {
+        case days > 0:
+          timeFormat += `${days} day${days > 1 ? 's' : ''} `;
+        case hours > 0:
+          timeFormat += `${hours} hour${hours > 1 ? 's' : ''} `;
+        case minutes > 0:
+          timeFormat += `${minutes} minute${minutes > 1 ? 's' : ''} `;
+        default:
+          timeFormat += `${seconds} second${seconds > 1 ? 's' : ''}`;
+      }
+      return timeFormat.trim();
+    }
+    listOfAi();
+  </script>
+</html>

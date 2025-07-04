@@ -1,0 +1,107 @@
+# main.js
+main.commands=বোট কমান্ড ফাইল "%1" সফলভাবে লোড করা হয়েছে
+main.events=বোট ইভেন্ট ফাইল "%1" সফলভাবে লোড করা হয়েছে।
+main.cmderr=কমান্ড "%1" লোড করা যায়নি, ত্রুটি: %2।
+main.evnterr=ইভেন্ট "%1" লোড করা যায়নি, ত্রুটি: %2।
+main.configload=%1 ফাইল লোড করা হচ্ছে।
+main.configerr=%1 ফাইল লোড করা যায়নি, ত্রুটি: %2
+main.accountload=%1 ডেটা লোড করা হচ্ছে।
+main.loadedacc=loaded %1 data.
+main.accounterr=%1 লোড করা যায়নি, ত্রুটি: %2।
+main.emailNotfound=ক্রপয়া আপনার ইমেইল %1 ফাইলে প্রবেশ করান
+main.startloadCmd=\nকমান্ড লোড হচ্ছে
+main.startloadEvnt=ইভেন্ট লোড হচ্ছে
+main.cmdNameErr=%1 এর নাম খালি বা ভুল ফরম্যাটে আছে
+main.cmdCategoryErr=%1 এর বিভাগটি খালি বা ভুল ফরম্যাটে আছে
+main.premiumCmdErr=%1 এর প্রিমিয়াম প্রোপার্টি খালি বা ভুল ফরম্যাটে আছে
+main.prefixCmdErr=%1 এর প্রিফিক্স প্রোপার্টি খালি আছে অথবা ভুল ফরম্যাটে আছে।
+main.commandNameExist=কমান্ড %1 ইতিমধ্যে লোড করা আছে
+main.failedEvnt=%1 লোড করতে ব্যর্থ হয়েছে, ভুল ফরম্যাট
+main.evNameExist=ইভেন্টটি %1 ইতিমধ্যে লোড করা হয়েছে।
+main.successLogin=%1 ফাইলে লগ ইন করা হয়েছে
+main.loadingLogin=লোডিং লগইন সিস্টেম
+main.appstateEmpty=অ্যাপস্টেট ফাইল "%1" খালি, এটি মুছে ফেলা হচ্ছে
+main.loggingIn=%1 ফাইলে লগ ইন করা হচ্ছে
+main.loginErr=অ্যাপস্টেট %1 প্রক্রিয়াকরণে ত্রুটি, ত্রুটি %2
+main.loginErrencounter=লগইন সেশনের সময় একটি ত্রুটি দেখা দিয়েছে।
+main.loadingDatabase=ডাটাবেস সিস্টেম লোডিং
+main.databaseLoaded=লোড করা হয়েছে %1 সিস্টেম
+main.data1=এই বটটি রিয়ুকো দ্বারা তৈরি করা হয়েছে, ক্রেডিট পরিবর্তন করবেন না।
+main.cantDeployData=%1 সিস্টেম স্থাপন করা যাচ্ছে না, ত্রুটি %1
+main.data2=ত্রুটির সম্মুখীন হয়েছেন? দয়া করে ফেসবুকে আমার সাথে যোগাযোগ করুন: www.facebook.com/profile/ryukodev
+main.data3=রায়ুকো ভি৫-এর সাথে একাধিক অ্যাপ স্টেট উপভোগ করুন
+    
+
+
+# includes/listen.js
+
+listen.startLoadEnvironment=পরিবেশের ভেরিয়েবল লোড করার জন্য এগিয়ে যান।
+listen.loadedEnvironmentThread=থ্রেড পরিবেশের ভেরিয়েবল সফলভাবে লোড করা হয়েছে। 
+listen.loadedEnvironmentUser=ব্যবহারকারীর পরিবেশের ভেরিয়েবল সফলভাবে লোড করা হয়েছে।
+listen.successLoadEnvironment=পরিবেশের ভেরিয়েবল সফলভাবে লোড করা হয়েছে।
+listen.failLoadEnvironment=পরিবেশের ভেরিয়েবল লোড করা যায়নি, ত্রুটি: %1
+
+# includes/controller/currencies.js
+
+currencies.needObjectOrArray=এটি একটি অ্যারে বা অবজেক্ট বা সম্ভবত উভয়ই হতে হবে।
+currencies.needObject=এটি অবশ্যই একটি অবজেক্ট হতে হবে।
+currencies.needNumber=এটি অবশ্যই একটি সংখ্যা হতে হবে।
+
+# includes/controller/threads.js
+
+threads.needObjectOrArray=এটি অবশ্যই একটি অ্যারে বা অবজেক্ট বা সম্ভবত উভয়ই হতে হবে।
+threads.needObject= অবজেক্ট হতে হবে
+
+# includes/controller/users.js
+
+users.needObjectOrArray=একটি অ্যারে বা একটি অবজেক্ট হতে হবে অথবা হয়তো উভয়ই হতে পারে
+users.needObject=অবশ্যই একটি বস্তু হতে হবে
+
+# includes/handle/handleCommand.js
+
+handleCommand.userBanned=আপনি বোট ব্যবহার করতে পারবেন না।
+handleCommand.threadBanned=আপনার থ্রেড বোট ব্যবহার করতে পারবে না।
+handleCommand.commandNotExist=আপনার ব্যবহৃত কমান্ড আমাদের সিস্টেমে বিদ্যমান নেই, "%1" চেষ্টা করুন।
+handleCommand.commandThreadBanned=আপনার থ্রেড "%1" কমান্ড ব্যবহার করতে পারবে না।
+handleCommand.commandUserBanned=আপনি "%1" কমান্ড ব্যবহার করতে পারবেন না।
+handleCommand.threadNotAllowNSFW=আপনার থ্রেডে NSFW কমান্ড ব্যবহার করার অনুমতি নেই।
+handleCommand.cantGetInfoThread=আপনার থ্রেডের তথ্য পাওয়া যাচ্ছে না, ত্রুটি: %1।
+handleCommand.permissionNotEnough=আপনার কাছে "%1" কমান্ড ব্যবহার করার অনুমতি নেই।
+handleCommand.cantSetMessageReaction= setMessageReaction এ কিছু অপ্রত্যাশিত ত্রুটি হয়েছে, ত্রুটি: %1।
+handleCommand.executeCommand=\n সময় এবং তারিখ: %1 \n ব্যবহৃত কমান্ড: %2 \n ব্যবহারকারী আইডি: %3 \n গ্রুপ আইডি: %4 \n আর্গুমেন্ট অন্তর্ভুক্ত: %5 \n প্রক্রিয়াকরণের সময়: %6ms
+handleCommand.commandError="%1" কমান্ড ব্যবহার করার সময় কিছু অপ্রত্যাশিত ত্রুটি হয়েছে, ত্রুটি: %2।
+handleCommand.notMatched=এই কমান্ডটি শুরু করার জন্য কোনও প্রিফিক্সের প্রয়োজন নেই।
+handleCommand.noPrefix=এই কমান্ডে কোনও কমান্ড কনফিগ "usePrefix" প্রোপার্টি নেই।
+handleCommand.commandNotFound=আপনার ব্যবহৃত কমান্ডটি বিদ্যমান নেই।
+
+# includes/handle/handleCommandEvent.js
+
+handleCommandEvent.moduleError="%1" কমান্ড ব্যবহার করার সময় কিছু অপ্রত্যাশিত ত্রুটি হয়েছে, ত্রুটি: %2।
+
+# includes/handle/handleCreateDatabase.js
+
+handleCreateDatabase.newThread=\nryuko - নতুন গ্রুপ সনাক্ত করা হয়েছে %1।
+handleCreateDatabase.newUser=\nryuko - নতুন ব্যবহারকারী সনাক্ত করা হয়েছে %1।
+
+# includes/handle/handleEvent.js
+
+handleEvent.executeEvent=\n সময় এবং তারিখ: %1 \n কার্যকর ইভেন্ট: %2 \n গ্রুপ আইডি: %3 \n প্রক্রিয়াকরণের সময়: %4ms
+handleEvent.eventError="%1" ইভেন্টটি কার্যকর করার সময় কিছু ত্রুটি হয়েছে, ত্রুটি: %2।
+
+# includes/handle/handleReaction.js
+
+handleReaction.missingValue=আপনার সমস্যার সমাধান করার জন্য মূল্যবোধ অনুপস্থিত।
+handleReaction.executeError=আপনার সমস্যার সমাধান করার সময় কিছু ত্রুটি হয়েছে, ত্রুটি: %1।
+
+# includes/handle/handleReply.js
+
+handleReply.missingValue=আপনার সমস্যার সমাধান করার জন্য মূল্যবোধ অনুপস্থিত।
+handleReply.executeError=আপনার সমস্যার সমাধান করার সময় কিছু ত্রুটি হয়েছে, ত্রুটি: %1।
+
+# includes/handle/handleSchedule.js
+
+handleSchedule.exectuteError=মডিউল %1 এ সময়সূচী নির্ধারণ করার সময় কিছু ত্রুটি হয়েছে, ত্রুটি: %2।
+
+# utils/index.js
+
+utils.throwError=সিনট্যাক্স ত্রুটি, আরও ব্যবহারের বিস্তারিত জানার জন্য দয়া করে %1help %2 ব্যবহার করুন।

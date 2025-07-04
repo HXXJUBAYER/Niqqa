@@ -1,0 +1,38 @@
+{
+    "logs": {
+        "enable": true
+    },
+    "adminUpdate": {
+        "autoUnsend": true,
+        "sendNoti": true,
+        "timeToUnsend": 10
+    },
+    "adminNoti": {
+        "autoUnsend": true,
+        "sendNoti": true,
+        "timeToUnsend": 10
+    },
+    "math": {
+        "WOLFRAM": "T8J8YV-H265UQ762K"
+    },
+    "sing": {
+        "YOUTUBE_API": "AIzaSyCqox-KXEwDncsuo2HIpE0MF8J7ATln5Vc",
+        "SOUNDCLOUD_API": "M4TSyS6eV0AcMynXkA3qQASGcOFQTWub"
+    },
+    "video": {
+        "YOUTUBE_API": "AIzaSyDEE1-zZSRVI8lTaQOVsIAQFgL-_BJKvhk"
+    },
+    "audio": {
+        "YOUTUBE_API": "AIzaSyDEE1-zZSRVI8lTaQOVsIAQFgL-_BJKvhk"
+    },
+    "log": {
+        "enable": true
+    },
+    "leave": {
+        "status": true,
+        "number": 150
+    },
+    "weather": {
+        "OPEN_WEATHER": "b7f1db5959a1f5b2a079912b03f0cd96"
+    }
+}

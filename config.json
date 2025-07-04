@@ -1,0 +1,47 @@
+{
+  "author": "ryuko",
+  "language": "english",
+  "allowinbox": false,
+  "adminonly": false,
+  "autocreatedb": true,
+  "approval": false,
+  "premium": false,
+  "autopost": true,
+  "email": "sanjivfresh@gmail.com",
+  "operators": [
+    "100091459940475"
+  ],
+  "autorestart": {
+    "status": false,
+    "time": 180,
+    "note": "the system is automatically restarts in 3 hours"
+  },
+  "autoDeleteCache": {
+    "status": false,
+    "time": 60,
+    "note": "auto delete caches in 1 hour, kindly set the status to true, if you dont want to delete caches, set the status to false."
+  },
+  "haspremiumcmd": [],
+  "approvedgroups": [],
+  "disabledcmds": [],
+  "disabledevnts": [],
+  "loginoptions": {
+    "selfListen": false,
+    "selfListenEvent": false,
+    "listenEvents": true,
+    "listenTyping": false,
+    "updatePresence": false,
+    "forceLogin": false,
+    "autoMarkDelivery": false,
+    "autoMarkRead": false,
+    "autoReconnect": true,
+    "online": false,
+    "emitReady": false,
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36"
+  },
+  "database": {
+    "sqlite": {
+      "storage": "botdata/database.sqlite"
+    }
+  }
+}
