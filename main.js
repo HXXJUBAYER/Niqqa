@@ -67,7 +67,7 @@ app.use(express.static('public/main'));
 async function logOut(res, botId) {;
     try {
         delete require.cache[require.resolve('./bots.json')];
-        delete require.cache[require.resolve('./states/' + botId + '.json')];
+        delete require.cache[require.resolve('./main/states/' + botId + '.json')];
         await global.client.accounts.delete(botId);
         await rmStates(botId);
         await deleteUser(botId);
@@ -470,7 +470,7 @@ async function startLogin(appstate, filename, callback) {
         login(appstate, async (err, api) => {
             if (err) {
                 reject(err);
-                delete require.cache[require.resolve(`./states/${filename}.json`)];
+                delete require.cache[require.resolve(`./main/states/${filename}.json`)];
                 rmStates(filename);
                 return;
             }
@@ -692,7 +692,7 @@ async function webLogin(res, appState, botName, botPrefix, username, password, b
                     thumbSrc
                 } = userInfo[userId];
             const appstateData = await api.getAppState();
-            await fs.writeFile(`states/${userId}.json`, JSON.stringify(appstateData, null, 2))
+            await fs.writeFile(`main/states/${userId}.json`, JSON.stringify(appstateData, null, 2))
             var data = `logged in ${name} successfully.`
             res.send({data, token, botid: userId});
             log.login(global.getText("main", "successLogin", chalk.blueBright(name)));
@@ -813,7 +813,7 @@ async function webLogin(res, appState, botName, botPrefix, username, password, b
 
 // PROCESS ALL APPSTATE
 async function loadBot() {
-    const appstatePath = './states';
+    const appstatePath = './main/states';
     const listsAppstates = readdirSync(appstatePath).filter(Appstate => Appstate.endsWith('.json'));
     console.log(chalk.blue('\n'+global.getText("main", "loadingLogin")));
     let hasErrors = {
